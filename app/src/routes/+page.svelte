@@ -57,12 +57,23 @@ function changeElementContent(idTodo, idElement, content){
 }
 
 function selectTodo(id){
-    console.log(id)
     selectedTodo = id
 }
 
+function deleteTodo(id){
+    todos.splice(id,1)
+    
+    let index = 0
+    todos.forEach(element => {
+        element.id = index
+        index++
+    });
+    updateCookie()
+}
+
 function updateCookie(){
-    document.cookie = "todos=" + JSON.stringify(todos)
+    let age = 60 * 60 * 24 * 365
+    document.cookie = "todos=" + JSON.stringify(todos) + "; max-age=" + age + "; path=/;"
 }
 
 function getCookie(name) {
@@ -101,14 +112,14 @@ onMount(() => {
 {#if selectedTodo > -1}
     <ToDo todo={todos[selectedTodo]} addTodoElement={addTodoElement} changeElementContent={changeElementContent}/>
 {:else}
-    <Selection todos={todos} selectTodo={selectTodo}/>
+    <Selection todos={todos} selectTodo={selectTodo} deleteTodo={deleteTodo}/>
 {/if}
 
 <style>
 @reference "../routes/layout.css";
 
     .btn {
-        @apply font-bold px-2 rounded font-bold;
+        @apply font-bold px-2 rounded;
     }
     /* Emerald */
     .btn-emerald {
@@ -126,16 +137,22 @@ onMount(() => {
     }
 
     /* Rose */
+    .btn-rose {
+        @apply bg-rose-500 text-white;
+    }
     .btn-border-rose {
         @apply border-2 border-rose-500;
     }
     .btn-border-rose:hover {
-        @apply bg-rose-700 border-rose-600 text-white;
+        @apply bg-rose-700 text-white;
     }
 
     /* Sky */
     .btn-sky {
         @apply bg-sky-500 text-white;
+    }
+    .btn-sky:hover {
+        @apply bg-sky-700 text-white;
     }
 
 </style>
