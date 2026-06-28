@@ -3,49 +3,24 @@
 
 import Selection from "./Selection.svelte"
 import ToDo from "./ToDo.svelte"
-	import { onMount } from 'svelte';
+import { onMount } from 'svelte';
 
-// let isTodoSelected = $state(false)
 let selectedTodo = $state(-1)
-// let todos = $state([{
-//         "id": 0,
-//         "header": "Dies ist ein Todo", 
-//         "elements": [{
-//             "id": 0,
-//             "type": "checkbox", 
-//             "content":"Dies ist der erste Content mit einer Checkbox"
-//         }]
-//     },
-//     {
-//         "id": 1,
-//         "header": "Dies ist das zweite Todo", 
-//         "elements": [{
-//             "id": 1,
-//             "type": "checkbox", 
-//             "content":"Dies ist der Content des zweiten Todos mit einer Checkbox"
-//         }]
-//     }]
-// )
 let todos = $state([])
-// let todos = $state(JSON.parse(getCookie("todos")))
 
 function addTodo(){
     todos.push({
         "id":todos.length,
-        "header": "Title", 
-        "elements": [{
-            "id":0,
-            "type": "text", 
-            "content":"Content"
-        }]
+        "title": "Title", 
+        "elements": []
     })
     updateCookie()
 }
 
-function addTodoElement(idTodo){
+function addTodoElement(idTodo, type){
     todos[idTodo].elements.push({
             "id": todos[idTodo].elements.length,
-            "type": "text", 
+            "type": type, 
             "content":""
         })
     updateCookie()
@@ -54,6 +29,11 @@ function addTodoElement(idTodo){
 function changeElementContent(idTodo, idElement, content){
     todos[idTodo].elements[idElement].content = content
     updateCookie()
+}
+
+function changeToDoTitle(idTodo, title){
+  todos[idTodo].title = title
+  updateCookie()
 }
 
 function selectTodo(id){
@@ -82,13 +62,6 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-// if (document.cookie.indexOf(";") > -1) {
-    
-    
-// }else{
-//     document.cookie = "todo=" + JSON.stringify(todos)
-// }
-
 
 onMount(() => {
         let rawTodos = getCookie("todos")
@@ -98,7 +71,6 @@ onMount(() => {
 		
 });
 </script>
-
 
 <header class="border-b p-1 flex items-center">
     <h2 class="font-bold text-xl">Paprika-ToDo</h2>
@@ -110,10 +82,11 @@ onMount(() => {
 </header>
 
 {#if selectedTodo > -1}
-    <ToDo todo={todos[selectedTodo]} addTodoElement={addTodoElement} changeElementContent={changeElementContent}/>
+    <ToDo todo={todos[selectedTodo]} addTodoElement={addTodoElement} changeElementContent={changeElementContent} changeToDoTitle={changeToDoTitle}/>
 {:else}
     <Selection todos={todos} selectTodo={selectTodo} deleteTodo={deleteTodo}/>
 {/if}
+
 
 <style>
 @reference "../routes/layout.css";
