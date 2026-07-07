@@ -8,7 +8,6 @@ import { onMount } from 'svelte';
 let selectedTodo = $state(-1)
 let todos = $state([])
 
-$inspect(todos);
 
 function addTodo(){
     todos.push({
@@ -36,7 +35,6 @@ function changeElementContent(idTodo, idElement, content, check=false){
 }
 
 function changeElementPosition(idTodo, idElement, positionDelta){
-    console.log(idTodo, idElement, positionDelta)
     let element = todos[idTodo].elements[idElement]
     let toIndex = element.id - positionDelta
     let fromIndex = element.id
@@ -79,7 +77,6 @@ function shuffleElements(idTodo){
 
 function clearElements(idTodo, onlyChecks){
     if (onlyChecks) {
-        console.log("####")
         let tmpChecks = []
         todos[idTodo].elements.forEach(element => {
             if (element.check) {
@@ -87,11 +84,9 @@ function clearElements(idTodo, onlyChecks){
             }
         });
 
-        console.log(tmpChecks)
 
         tmpChecks.slice().reverse().forEach(id => {
             todos[idTodo].elements.splice(id,1)
-            console.log(id)
         })
         
         let index = 0
@@ -186,32 +181,6 @@ onMount(() => {
     }
     .btn-emerald:hover {
         @apply bg-emerald-700;
-    }
-
-    .btn-border-emerald {
-        @apply border-2 border-emerald-500;
-    }
-    .btn-border-emerald:hover {
-        @apply bg-emerald-700 border-emerald-600 text-white;
-    }
-
-    /* Rose */
-    .btn-rose {
-        @apply bg-rose-500 text-white;
-    }
-    .btn-border-rose {
-        @apply border-2 border-rose-500;
-    }
-    .btn-border-rose:hover {
-        @apply bg-rose-700 text-white;
-    }
-
-    /* Sky */
-    .btn-sky {
-        @apply bg-sky-500 text-white;
-    }
-    .btn-sky:hover {
-        @apply bg-sky-700 text-white;
     }
 
 </style>

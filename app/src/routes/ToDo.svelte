@@ -196,9 +196,6 @@
 		@apply bg-slate-800;
 	}
 
-	.min-height-1{
-	    min-height: 1rem;
-	}
 	.prevent-select {
         -webkit-user-select: none; /* Safari */
         -ms-user-select: none; /* IE 10 and IE 11 */

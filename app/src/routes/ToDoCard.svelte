@@ -28,13 +28,6 @@ import IconTrash from "./icons/icon-trash.svelte";
         @apply bg-rose-700 text-white;
     }
 
-    .btn-border-rose {
-        @apply border-2 border-rose-500;
-    }
-    .btn-border-rose:hover {
-        @apply bg-rose-700 border-rose-600 text-white;
-    }
-
     .wrapper .wrapper-delete{
         display:none;
     }
