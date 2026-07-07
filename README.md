@@ -19,3 +19,11 @@ All ToDo data is stored in your cookies.
 ## Demo
 You can try and use it here: [Demo](https://lightshadow244.github.io/paprika-todo/)
 
+## Setup
+Requirements: `npm`
+```bash
+cd app
+npm i
+npm run dev -- --open
+```
+
