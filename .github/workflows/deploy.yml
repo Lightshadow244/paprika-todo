@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          working-directory: ./app
+          cache-dependency-path: ./app/package-lock.json
 
       - name: Install dependencies
         run: npm i
