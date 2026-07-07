@@ -4,6 +4,7 @@
 
 // @ts-nocheck
     let {content, idTodo, idElement, ...props} = $props()
+    /*** @type {HTMLInputElement}*/ 
     let input
     
     function updateContent(){
@@ -11,7 +12,10 @@
     }
 
 </script>
-<input bind:this={input} class="w-full courier-font" onfocusout={() => updateContent()} value={content}>
+<div class="relative">
+    <div class="absolute -left-5 prevent-select">&#8226;</div>
+    <input bind:this={input} class="w-full courier-font p-1" onfocusout={() => updateContent()} value={content}>
+</div>
 
 <style>
     .courier-font{

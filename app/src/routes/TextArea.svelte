@@ -4,7 +4,10 @@
 
 // @ts-nocheck
     let {content, idTodo, idElement, ...props} = $props()
+
+    /*** @type {HTMLTextAreaElement}*/ 
     let textarea
+
     let rows = $state(0)
     
     function updateContent(){
@@ -37,7 +40,7 @@
 		
     });
 </script>
-<textarea bind:this={textarea} class="w-full courier-font" cols="1" rows={rows} onfocusout={() => updateContent()}>{content}</textarea>
+<textarea bind:this={textarea} class="w-full courier-font p-1" cols="1" rows={rows} onfocusout={() => updateContent()}>{content}</textarea>
 
 <style>
     .courier-font{

@@ -1,16 +1,17 @@
 <script lang="js">
+import IconTrash from "./icons/icon-trash.svelte";
     let {todo, selectTodo, deleteTodo, ...props} = $props()
 
 </script>
-<div class="relative">
-    <button class="rounded border-1 hover:shadow-md hover:shadow-slate-500 hover:cursor-pointer w-full max-h-48 overflow-hidden" onclick={() => selectTodo(todo.id)}>
-        <h3 class="m-1 font-bold border-b">{todo.title}</h3>
+<div class="relative wrapper">
+    <button class="rounded border-1 hover:shadow-md hover:shadow-slate-500 hover:cursor-pointer w-full max-h-48 overflow-hidden text-left" onclick={() => selectTodo(todo.id)}>
+        <h3 class="m-1 font-bold border-b pb-1">{todo.title}</h3>
         {#each todo.elements as element, index (index)}
             <article class="m-1">{element.content}</article>
         {/each}
     
     </button>
-    <button class="btn btn-rose absolute top-1 right-1" onclick={() => {deleteTodo(todo.id)}}>Del</button>
+    <button class="btn btn-rose absolute top-1 right-1 wrapper-delete" onclick={() => {deleteTodo(todo.id)}}><IconTrash /></button>
 </div>
 
 
@@ -32,5 +33,12 @@
     }
     .btn-border-rose:hover {
         @apply bg-rose-700 border-rose-600 text-white;
+    }
+
+    .wrapper .wrapper-delete{
+        display:none;
+    }
+    .wrapper:hover .wrapper-delete{
+        display:block;
     }
 </style>
