@@ -10,12 +10,14 @@ let todos = $state([])
 
 
 function addTodo(){
+    let id = todos.length
     todos.push({
-        "id":todos.length,
-        "title": "Unnamed", 
+        "id":id,
+        "title": "New List", 
         "elements": []
     })
     updateCookie()
+    selectedTodo = id
 }
 
 function addTodoElement(idTodo, type){
