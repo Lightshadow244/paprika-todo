@@ -61,7 +61,7 @@
 				<button class="btn btn-transparent w-full text-left p-1" onclick={() => {props.shuffleElements(todo.id)}}>Shuffle</button>
 			</div>
 		</div>
-		<button	class="btn btn-emerald ms-1" onclick={() => {viewToDo = true}}><IconSave /></button>
+		<!-- <button	class="btn btn-emerald ms-1" onclick={() => {viewToDo = true}}><IconSave /></button> -->
 	</div>
 	
 
